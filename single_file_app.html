@@ -1,0 +1,1588 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="信息收集系统 - 用于收集和管理用户提交的信息">
+    <meta name="keywords" content="信息收集,表单,项目管理">
+    <meta name="author" content="">
+    <title>信息收集系统</title>
+    
+    <!-- 内联Bootstrap 5 CSS -->
+    <style>
+        /* Bootstrap 5 CSS 核心样式 */
+        *,::after,::before{box-sizing:border-box}.bs-icon{--bs-icon-size:.75rem;display:flex;flex-shrink:0;justify-content:center;align-items:center;font-size:var(--bs-icon-size);width:calc(var(--bs-icon-size)*2);height:calc(var(--bs-icon-size)*2);color:var(--bs-primary)}
+        :root{--bs-blue:#0d6efd;--bs-indigo:#6610f2;--bs-purple:#6f42c1;--bs-pink:#d63384;--bs-red:#dc3545;--bs-orange:#fd7e14;--bs-yellow:#ffc107;--bs-green:#198754;--bs-teal:#20c997;--bs-cyan:#0dcaf0;--bs-white:#fff;--bs-gray:#6c757d;--bs-gray-dark:#343a40;--bs-gray-100:#f8f9fa;--bs-gray-200:#e9ecef;--bs-gray-300:#dee2e6;--bs-gray-400:#ced4da;--bs-gray-500:#adb5bd;--bs-gray-600:#6c757d;--bs-gray-700:#495057;--bs-gray-800:#343a40;--bs-gray-900:#212529;--bs-primary:#0d6efd;--bs-secondary:#6c757d;--bs-success:#198754;--bs-info:#0dcaf0;--bs-warning:#ffc107;--bs-danger:#dc3545;--bs-light:#f8f9fa;--bs-dark:#212529;--bs-primary-rgb:13,110,253;--bs-secondary-rgb:108,117,125;--bs-success-rgb:25,135,84;--bs-info-rgb:13,202,240;--bs-warning-rgb:255,193,7;--bs-danger-rgb:220,53,69;--bs-light-rgb:248,249,250;--bs-dark-rgb:33,37,41;--bs-white-rgb:255,255,255;--bs-black-rgb:0,0,0;--bs-body-color-rgb:33,37,41;--bs-body-bg-rgb:255,255,255;--bs-font-sans-serif:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";--bs-font-monospace:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;--bs-gradient:linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));--bs-body-font-family:var(--bs-font-sans-serif);--bs-body-font-size:1rem;--bs-body-font-weight:400;--bs-body-line-height:1.5;--bs-body-color:var(--bs-body-color-rgb);--bs-body-bg:var(--bs-body-bg-rgb);--bs-border-width:1px;--bs-border-style:solid;--bs-border-color:#dee2e6;--bs-border-color-translucent:rgba(0, 0, 0, 0.175);--bs-border-radius:.375rem;--bs-border-radius-sm:.25rem;--bs-border-radius-lg:.5rem;--bs-border-radius-xl:1rem;--bs-border-radius-2xl:2rem;--bs-border-radius-pill:50rem;--bs-link-color:var(--bs-primary);--bs-link-hover-color:var(--bs-primary);--bs-code-color:#d63384;--bs-highlight-bg:#fff3cd}
+        .btn{--bs-btn-padding-x:0.75rem;--bs-btn-padding-y:0.375rem;--bs-btn-font-family:var(--bs-body-font-family);--bs-btn-font-size:1rem;--bs-btn-font-weight:400;--bs-btn-line-height:1.5;--bs-btn-color:var(--bs-body-color);--bs-btn-bg:transparent;--bs-btn-border-width:var(--bs-border-width);--bs-btn-border-color:transparent;--bs-btn-border-radius:var(--bs-border-radius);--bs-btn-hover-border-color:transparent;--bs-btn-box-shadow:inset 0 1px 0 rgba(255, 255, 255, 0.15),0 1px 1px rgba(0, 0, 0, 0.075);--bs-btn-disabled-opacity:0.65;--bs-btn-focus-box-shadow:0 0 0 0.25rem rgba(var(--bs-btn-focus-shadow-rgb), .5)}
+        .btn-primary{--bs-btn-color:#fff;--bs-btn-bg:#0d6efd;--bs-btn-border-color:#0d6efd;--bs-btn-hover-color:#fff;--bs-btn-hover-bg:#0b5ed7;--bs-btn-hover-border-color:#0a58ca;--bs-btn-focus-shadow-rgb:49,132,253;--bs-btn-active-color:#fff;--bs-btn-active-bg:#0a58ca;--bs-btn-active-border-color:#0a53be;--bs-btn-active-shadow:inset 0 3px 5px rgba(0, 0, 0, 0.125);--bs-btn-disabled-color:#fff;--bs-btn-disabled-bg:#0d6efd;--bs-btn-disabled-border-color:#0d6efd}
+        .btn-secondary{--bs-btn-color:#fff;--bs-btn-bg:#6c757d;--bs-btn-border-color:#6c757d;--bs-btn-hover-color:#fff;--bs-btn-hover-bg:#5c636a;--bs-btn-hover-border-color:#565e64;--bs-btn-focus-shadow-rgb:130,138,145;--bs-btn-active-color:#fff;--bs-btn-active-bg:#565e64;--bs-btn-active-border-color:#51585e;--bs-btn-active-shadow:inset 0 3px 5px rgba(0, 0, 0, 0.125);--bs-btn-disabled-color:#fff;--bs-btn-disabled-bg:#6c757d;--bs-btn-disabled-border-color:#6c757d}
+        .btn-outline-secondary{--bs-btn-color:#6c757d;--bs-btn-border-color:#6c757d;--bs-btn-hover-color:#fff;--bs-btn-hover-bg:#6c757d;--bs-btn-hover-border-color:#6c757d;--bs-btn-focus-shadow-rgb:108,117,125;--bs-btn-active-color:#fff;--bs-btn-active-bg:#6c757d;--bs-btn-active-border-color:#6c757d;--bs-btn-active-shadow:inset 0 3px 5px rgba(0, 0, 0, 0.125);--bs-btn-disabled-color:#6c757d;--bs-btn-disabled-bg:transparent;--bs-btn-disabled-border-color:#6c757d;--bs-gradient:none;}
+        .btn-outline-success{--bs-btn-color:#198754;--bs-btn-border-color:#198754;--bs-btn-hover-color:#fff;--bs-btn-hover-bg:#198754;--bs-btn-hover-border-color:#198754;--bs-btn-focus-shadow-rgb:25,135,84;--bs-btn-active-color:#fff;--bs-btn-active-bg:#198754;--bs-btn-active-border-color:#198754;--bs-btn-active-shadow:inset 0 3px 5px rgba(0, 0, 0, 0.125);--bs-btn-disabled-color:#198754;--bs-btn-disabled-bg:transparent;--bs-btn-disabled-border-color:#198754;--bs-gradient:none;}
+        .container-fluid{width:100%;padding-right:var(--bs-gutter-x,.75rem);padding-left:var(--bs-gutter-x,.75rem);margin-right:auto;margin-left:auto}
+        .row{--bs-gutter-x:1.5rem;--bs-gutter-y:0;display:flex;flex-wrap:wrap;margin-top:calc(var(--bs-gutter-y)* -1);margin-right:calc(var(--bs-gutter-x)* -.5);margin-left:calc(var(--bs-gutter-x)* -.5)}.row>*{flex-shrink:0;width:100%;max-width:100%;padding-right:calc(var(--bs-gutter-x)* .5);padding-left:calc(var(--bs-gutter-x)* .5);margin-top:var(--bs-gutter-y)}
+        .col-md-6{flex:0 0 auto;width:50%}
+        .form-control{display:block;width:100%;padding:.375rem .75rem;font-size:1rem;font-weight:400;line-height:1.5;color:var(--bs-body-color);background-color:var(--bs-body-bg);background-clip:padding-box;border:var(--bs-border-width) solid var(--bs-border-color);-webkit-appearance:none;-moz-appearance:none;appearance:none;border-radius:var(--bs-border-radius);transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out}
+        .form-label{margin-bottom:.5rem}
+        .mb-3{margin-bottom:1rem}
+        .mb-4{margin-bottom:1.5rem}
+        .me-2{margin-right:.5rem}
+        .me-4{margin-right:1.5rem}
+        .ms-2{margin-left:.5rem}
+        .py-3{padding-top:1rem;padding-bottom:1rem}
+        .py-2{padding-top:.5rem;padding-bottom:.5rem}
+        .px-3{padding-right:1rem;padding-left:1rem}
+        .p-3{padding:1rem}
+        .p-2{padding:.5rem}
+        .position-relative{position:relative}
+        .toast{position:relative;display:flex;flex-direction:column;min-width:0;word-wrap:break-word;background-color:rgba(var(--bs-body-bg-rgb),var(--bs-bg-opacity));background-clip:padding-box;border:var(--bs-border-width) solid var(--bs-border-color);border-radius:var(--bs-border-radius);box-shadow:0 .5rem 1rem rgba(0,0,0,.15);opacity:0}
+        .toast-header{display:flex;align-items:center;padding:.5rem .75rem;color:var(--bs-secondary);background-color:rgba(var(--bs-body-bg-rgb),.85);background-clip:padding-box;border-bottom:var(--bs-border-width) solid var(--bs-border-color);border-top-left-radius:calc(var(--bs-border-radius)-var(--bs-border-width));border-top-right-radius:calc(var(--bs-border-radius)-var(--bs-border-width))}
+        .toast-body{padding:.75rem}
+        .show{display:block;opacity:1}
+        .position-fixed{position:fixed}
+        .top-0{top:0}
+        .end-0{right:0}
+        .z-50{z-index:50}
+        .bg-primary{--bs-bg-opacity:1;background-color:rgb(var(--bs-primary-rgb))!important}
+        .bg-success{--bs-bg-opacity:1;background-color:rgb(var(--bs-success-rgb))!important}
+        .bg-danger{--bs-bg-opacity:1;background-color:rgb(var(--bs-danger-rgb))!important}
+        .text-white{--bs-text-opacity:1;color:rgba(var(--bs-white-rgb),var(--bs-text-opacity))!important}
+        .text-muted{--bs-text-opacity:1;color:var(--bs-gray-600)!important}
+        .text-center{text-align:center}
+        .d-flex{display:flex}
+        .d-none{display:none}
+        .justify-content-between{justify-content:space-between}
+        .justify-content-center{justify-content:center}
+        .align-items-center{align-items:center}
+        .flex-shrink-0{flex-shrink:0}
+        .flex-wrap{flex-wrap:wrap}
+        .gap-1{gap:.25rem}
+        .gap-2{gap:.5rem}
+        .gap-3{gap:1rem}
+        .gap-4{gap:1.5rem}
+        .gap-5{gap:3rem}
+        .border-0{border:0!important}
+        .rounded{border-radius:var(--bs-border-radius)!important}
+        .rounded-3{border-radius:var(--bs-border-radius-lg)!important}
+        .rounded-4{border-radius:var(--bs-border-radius-xl)!important}
+        .shadow{box-shadow:0 .5rem 1rem rgba(0,0,0,.15)!important}
+        .btn-close{box-sizing:content-box;width:1em;height:1em;padding:.25em .25em;color:var(--bs-body-color);background:transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;border:0;border-radius:.25rem;opacity:.5;transition:opacity .15s ease-in-out}
+        .btn-close:hover{color:var(--bs-body-color);text-decoration:none;opacity:.75}
+        .btn-close:focus{outline:0;box-shadow:0 0 0 .25rem rgba(var(--bs-btn-close-focus-shadow-rgb),.5);opacity:1}
+        .btn-close-white{filter:invert(1) grayscale(100%) brightness(200%)}
+        
+        /* 自定义CSS变量 */
+        :root {
+            --primary-color: #1976d2;
+            --primary-light: #e3f2fd;
+            --primary-dark: #1565c0;
+            --secondary-color: #6c757d;
+            --bg-color: #f5f9ff;
+            --card-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            --border-radius: 10px;
+            --transition: all 0.3s ease;
+        }
+        
+        /* 基础样式 */
+        body {
+            background-color: var(--primary-light);
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        /* 容器样式 */
+        .container-fluid {
+            max-width: 1200px;
+        }
+        
+        .main-container {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            padding: 30px;
+            margin: 20px auto;
+        }
+        
+        /* 网格布局 */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 25px;
+            align-items: start;
+        }
+        
+        /* 侧边栏样式 */
+        .left-sidebar {
+            background-color: var(--bg-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            padding: 20px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+        
+        .sidebar-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        .entry-list {
+            max-height: 500px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #90caf9 #f1f1f1;
+        }
+        
+        /* 滚动条样式 */
+        .entry-list::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .entry-list::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+        
+        .entry-list::-webkit-scrollbar-thumb {
+            background: #90caf9;
+            border-radius: 3px;
+            transition: background 0.3s ease;
+        }
+        
+        .entry-list::-webkit-scrollbar-thumb:hover {
+            background: #64b5f6;
+        }
+        
+        /* 内容区域 */
+        .right-content {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .content-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            padding: 25px;
+            border: 1px solid var(--primary-light);
+        }
+        
+        /* 条目样式 */
+        .entry-item, .project-item {
+            padding: 12px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+            background-color: #f8f9fa;
+            border: 2px solid transparent;
+        }
+        
+        .entry-item:hover, .project-item:hover {
+            background-color: var(--primary-light);
+            transform: translateX(5px);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+        
+        .entry-item.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-dark);
+            box-shadow: 0 2px 8px rgba(25, 118, 210, 0.3);
+        }
+        
+        .entry-item .nickname {
+            font-weight: bold;
+        }
+        
+        .entry-item .meta {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+        
+        /* 项目样式 */
+        .project-item {
+            background-color: #f0f7ff;
+            border: 1px solid var(--primary-light);
+        }
+        
+        .project-item.active {
+            transform: translateX(5px);
+            box-shadow: 0 2px 8px rgba(25, 118, 210, 0.3);
+        }
+        
+        .project-item.active .project-name {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        
+        .project-item.active .expand-icon {
+            color: var(--primary-color);
+        }
+        
+        .project-name {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        /* 展开/折叠按钮 */
+        .expand-btn {
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        
+        .expand-btn:hover {
+            transform: scale(1.2);
+        }
+        
+        .expand-icon {
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .project-children {
+            margin-top: 8px;
+            margin-left: 20px;
+            border-left: 2px solid var(--primary-light);
+            padding-left: 15px;
+        }
+        
+        /* 下拉菜单 */
+        .dropdown-toggle {
+            background-color: transparent;
+            color: inherit;
+            border: none;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            line-height: 1;
+            padding: 0;
+            transition: all 0.2s ease;
+            box-shadow: none;
+        }
+        
+        .dropdown-toggle::after {
+            display: none !important;
+        }
+        
+        .dropdown-toggle:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+            transform: scale(1.1);
+        }
+        
+        .dropdown-toggle:active {
+            transform: scale(0.95);
+        }
+        
+        .entry-item.active .dropdown-toggle {
+            background-color: transparent;
+            color: white;
+        }
+        
+        .entry-item.active .dropdown-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .dropdown-menu {
+            background-color: white;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            padding: 4px 0;
+        }
+        
+        .dropdown-item {
+            color: #333;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        
+        .dropdown-item:hover {
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+        }
+        
+        .delete-option {
+            color: #dc3545;
+        }
+        
+        .delete-option:hover {
+            background-color: #fee;
+            color: #dc3545;
+        }
+        
+        /* 按钮样式 */
+        .btn {
+            --bs-btn-padding-x: 0;
+            --bs-btn-padding-y: 0;
+            --bs-btn-border-width: 0;
+            --bs-btn-hover-border-color: transparent;
+            --bs-btn-focus-shadow-rgb: 0, 0, 0, 0;
+        }
+        
+        .btn-group-custom {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        /* 表单样式 */
+        .form-label {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .form-label.required::after {
+            content: " *";
+            color: #dc3545;
+        }
+        
+        .form-control {
+            border-radius: 6px;
+            border: 1px solid #bbdefb;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(25, 118, 210, 0.25);
+        }
+        
+        .form-control.is-invalid {
+            border-color: #dc3545;
+        }
+        
+        .invalid-feedback {
+            display: none;
+            width: 100%;
+            margin-top: 0.25rem;
+            font-size: 0.875em;
+            color: #dc3545;
+        }
+        
+        .form-control.is-invalid~.invalid-feedback {
+            display: block;
+        }
+        
+        /* 文件上传 */
+        .custom-file-upload {
+            position: relative;
+        }
+        
+        .custom-file-upload-control {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.375rem 0.75rem;
+            background-color: #fff;
+            border: 1px solid #bbdefb;
+            border-radius: 6px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .custom-file-upload-control:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(25, 118, 210, 0.25);
+        }
+        
+        /* 图片预览 */
+        .preview-container {
+            max-width: 300px;
+            max-height: 300px;
+            overflow: hidden;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        
+        .preview-image {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        /* 条目详情 */
+        .entry-detail {
+            background-color: var(--bg-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            padding: 20px;
+            margin-top: 10px;
+            animation: fadeIn 0.3s ease-out;
+            border: 1px solid var(--primary-light);
+        }
+        
+        /* 淡入动画 */
+        @keyframes fadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(-10px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+        
+        .detail-section {
+            margin-bottom: 15px;
+        }
+        
+        .detail-label {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+        
+        .detail-value {
+            color: #333;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .grid-layout {
+                grid-template-columns: 1fr;
+            }
+            
+            .left-sidebar {
+                width: 100%;
+                position: static;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 20px;
+            }
+            
+            .content-card {
+                padding: 20px;
+            }
+            
+            .main-title {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .main-container {
+                padding: 15px;
+                margin: 10px;
+            }
+            
+            .content-card {
+                padding: 15px;
+            }
+            
+            .main-title {
+                font-size: 1.5rem;
+            }
+        }
+        
+        /* 视觉隐藏 */
+        .visually-hidden {
+            position: absolute !important;
+            width: 1px !important;
+            height: 1px !important;
+            padding: 0 !important;
+            margin: -1px !important;
+            overflow: hidden !important;
+            clip: rect(0, 0, 0, 0) !important;
+            white-space: nowrap !important;
+            border: 0 !important;
+        }
+        
+        /* 辅助样式 */
+        fieldset {
+            border: 1px solid var(--primary-light);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        legend {
+            float: none;
+            width: auto;
+            padding: 0 10px;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        /* 加载状态 */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="main-container">
+            <h1 class="main-title">信息收集系统</h1>
+            
+            <div class="grid-layout">
+                <!-- 左侧栏目：已添加列表 -->
+                <div class="left-sidebar">
+                    <div class="sidebar-title d-flex justify-content-between align-items-center">
+                        <span>已添加</span>
+                        <button class="btn btn-sm btn-primary" id="addProjectBtn" title="添加项目">
+                            <span>+</span>
+                        </button>
+                    </div>
+                    
+                    <!-- 添加项目表单 -->
+                    <div id="addProjectForm" style="display: none; margin-bottom: 15px;">
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control" id="projectNameInput" placeholder="输入项目名称">
+                            <button class="btn btn-primary" id="saveProjectBtn">保存</button>
+                            <button class="btn btn-secondary" id="cancelProjectBtn">取消</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 项目列表 -->
+                    <div class="entry-list" id="sidebarEntryList">
+                        <div class="text-center text-muted py-3">
+                            暂无条目，点击右侧添加
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 右侧内容：表单和功能区 -->
+                <div class="right-content">
+                    <!-- 添加条目表单 -->
+                    <div class="content-card">
+                        <h5 class="mb-4" style="color: #1976d2; font-weight: 700;">添加新条目</h5>
+                        <form id="entryForm" aria-labelledby="add-entry-title">
+                            <fieldset class="border p-3 rounded mb-4">
+                                <legend class="float-none w-auto px-2 text-sm font-bold text-primary">基本信息</legend>
+                                
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="nickname" class="form-label required">昵称</label>
+                                        <input type="text" class="form-control" id="nickname" name="nickname" placeholder="请输入昵称" required aria-required="true">
+                                        <div class="invalid-feedback" id="nickname-error"></div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="qq" class="form-label">QQ号</label>
+                                        <input type="text" class="form-control" id="qq" name="qq" placeholder="请输入QQ号" pattern="^\d{5,11}$" title="QQ号应为5-11位数字">
+                                        <div class="invalid-feedback" id="qq-error"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="kid" class="form-label">科雷ID</label>
+                                        <input type="text" class="form-control" id="kid" name="kid" placeholder="请输入科雷ID">
+                                        <div class="invalid-feedback" id="kid-error"></div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="video" class="form-label">视频链接/账号名称</label>
+                                        <input type="url" class="form-control" id="video" name="video" placeholder="请输入视频链接" pattern="^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$" title="请输入有效的URL">
+                                        <div class="invalid-feedback" id="video-error"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="image" class="form-label">图片</label>
+                                    <div class="custom-file-upload">
+                                        <input type="file" class="form-control visually-hidden" id="image" name="image" accept="image/*" aria-describedby="image-help">
+                                        <div class="custom-file-upload-control" aria-hidden="true">
+                                            <span id="fileUploadText">未选择</span>
+                                        </div>
+                                    </div>
+                                    <small id="image-help" class="form-text text-muted">支持JPG、PNG等图片格式，大小不超过5MB</small>
+                                    <div class="invalid-feedback" id="image-error"></div>
+                                </div>
+                            </fieldset>
+                            
+                            <!-- 图片预览 -->
+                            <div class="preview-container" id="previewContainer" style="display: none;">
+                                <img id="previewImage" class="preview-image" src="" alt="图片预览" aria-label="图片预览">
+                                <button type="button" class="btn btn-danger btn-sm mt-2 w-100" onclick="clearPreview()">清除预览</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- 功能按钮 -->
+                    <div class="content-card">
+                        <div class="btn-group-custom">
+                            <button type="submit" form="entryForm" class="btn btn-primary">确定</button>
+                            <button type="button" class="btn btn-outline-secondary" id="refreshBtn">刷新页面</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 选中项目的详细信息 -->
+                    <div id="selectedEntryDetail" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 模态框 - 用于显示详细信息（保留备用） -->
+    <div class="modal fade" id="entryModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">条目详情</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    <!-- 动态内容 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast 通知 -->
+    <div id="toastContainer" class="position-fixed top-0 end-0 p-3 z-50"></div>
+
+    <!-- 内联JavaScript -->
+    <script>
+        // --------------------------
+        // 工具模块
+        // --------------------------
+        const Utils = {
+            // 生成唯一ID
+            generateId: function(prefix = 'item') {
+                return `${prefix}_${Date.now()}_${Math.floor(Math.random() * 1000)}`;
+            },
+            
+            // 验证QQ号格式
+            validateQQ: function(qq) {
+                if (!qq) return true; // QQ号可选
+                const qqRegex = /^\d{5,11}$/;
+                return qqRegex.test(qq);
+            },
+            
+            // 验证URL格式
+            validateUrl: function(url) {
+                if (!url) return true; // URL可选
+                const urlRegex = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+                return urlRegex.test(url);
+            },
+            
+            // 限制图片大小
+            validateImageSize: function(file, maxSizeMB = 5) {
+                if (!file) return true;
+                const maxSizeBytes = maxSizeMB * 1024 * 1024;
+                return file.size <= maxSizeBytes;
+            },
+            
+            // 验证图片类型
+            validateImageType: function(file) {
+                if (!file) return true;
+                const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+                return allowedTypes.includes(file.type);
+            },
+            
+            // 显示通知
+            showToast: function(message, type = 'success') {
+                const toastContainer = document.getElementById('toastContainer');
+                const toastId = `toast_${Date.now()}`;
+                
+                let bgClass = 'bg-success';
+                let title = '成功';
+                if (type === 'error') {
+                    bgClass = 'bg-danger';
+                    title = '错误';
+                } else if (type === 'warning') {
+                    bgClass = 'bg-warning';
+                    title = '警告';
+                } else if (type === 'info') {
+                    bgClass = 'bg-info';
+                    title = '提示';
+                }
+                
+                const toastHTML = `
+                    <div id="${toastId}" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="toast-header ${bgClass} text-white">
+                            <strong class="me-auto">${title}</strong>
+                            <button type="button" class="btn-close btn-close-white" onclick="Utils.removeToast('${toastId}')" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body">
+                            ${message}
+                        </div>
+                    </div>
+                `;
+                
+                toastContainer.insertAdjacentHTML('beforeend', toastHTML);
+                
+                // 3秒后自动移除
+                setTimeout(() => {
+                    Utils.removeToast(toastId);
+                }, 3000);
+            },
+            
+            // 移除通知
+            removeToast: function(toastId) {
+                const toast = document.getElementById(toastId);
+                if (toast) {
+                    toast.remove();
+                }
+            },
+            
+            // 格式化文件大小
+            formatFileSize: function(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+            }
+        };
+        
+        // --------------------------
+        // 数据存储模块
+        // --------------------------
+        class DataStore {
+            constructor() {
+                this.storageKey = 'collection_entries';
+                this.initializeStorage();
+            }
+            
+            initializeStorage() {
+                try {
+                    const existing = this.getAll();
+                    if (!existing || existing.length === 0) {
+                        // 初始化示例数据
+                        const initialData = [
+                            {
+                                "nickname": "123",
+                                "qq": "",
+                                "kid": "123",
+                                "video": "",
+                                "image": null,
+                                "id": "entry_1",
+                                "type": "entry"
+                            },
+                            {
+                                "nickname": "111",
+                                "qq": "",
+                                "kid": "",
+                                "video": "",
+                                "image": null,
+                                "id": "entry_2",
+                                "type": "entry"
+                            },
+                            {
+                                "id": "project_3",
+                                "name": "测试",
+                                "type": "project",
+                                "children": []
+                            }
+                        ];
+                        this.save(initialData);
+                    }
+                } catch (error) {
+                    console.error('初始化存储失败:', error);
+                    Utils.showToast('初始化数据失败', 'error');
+                }
+            }
+            
+            getAll() {
+                try {
+                    const data = localStorage.getItem(this.storageKey);
+                    return data ? JSON.parse(data) : [];
+                } catch (error) {
+                    console.error('读取数据失败:', error);
+                    return [];
+                }
+            }
+            
+            save(data) {
+                try {
+                    localStorage.setItem(this.storageKey, JSON.stringify(data));
+                    return true;
+                } catch (error) {
+                    console.error('保存数据失败:', error);
+                    return false;
+                }
+            }
+            
+            addEntry(entry) {
+                try {
+                    const data = this.getAll();
+                    const newEntry = {
+                        ...entry,
+                        id: Utils.generateId('entry'),
+                        type: 'entry',
+                        createdAt: new Date().toISOString()
+                    };
+                    data.push(newEntry);
+                    return this.save(data) ? newEntry : null;
+                } catch (error) {
+                    console.error('添加条目失败:', error);
+                    return null;
+                }
+            }
+            
+            addProject(name) {
+                try {
+                    const data = this.getAll();
+                    const newProject = {
+                        id: Utils.generateId('project'),
+                        name: name,
+                        type: 'project',
+                        children: [],
+                        createdAt: new Date().toISOString()
+                    };
+                    data.push(newProject);
+                    return this.save(data) ? newProject : null;
+                } catch (error) {
+                    console.error('添加项目失败:', error);
+                    return null;
+                }
+            }
+            
+            deleteItem(id, type) {
+                try {
+                    const data = this.getAll();
+                    let updatedData;
+                    
+                    if (type === 'project') {
+                        // 删除项目及其子条目
+                        updatedData = data.filter(item => 
+                            item.id !== id && !(item.type === 'entry' && item.parent_id === id)
+                        );
+                    } else {
+                        // 删除单个条目
+                        updatedData = data.filter(item => item.id !== id);
+                    }
+                    
+                    return this.save(updatedData);
+                } catch (error) {
+                    console.error('删除项目/条目失败:', error);
+                    return false;
+                }
+            }
+            
+            // 清空所有数据（用于开发调试）
+            clearAll() {
+                try {
+                    localStorage.removeItem(this.storageKey);
+                    return true;
+                } catch (error) {
+                    console.error('清空数据失败:', error);
+                    return false;
+                }
+            }
+        }
+        
+        // --------------------------
+        // UI模块
+        // --------------------------
+        const UI = {
+            // 渲染条目列表
+            renderEntryList: function(entriesData) {
+                const entryList = document.getElementById('sidebarEntryList');
+                
+                if (!entriesData || entriesData.length === 0) {
+                    entryList.innerHTML = '<div class="text-center text-muted py-3">暂无条目，点击右侧添加</div>';
+                    return;
+                }
+                
+                // 分离项目和条目
+                const projects = entriesData.filter(item => item.type === 'project');
+                const entries = entriesData.filter(item => item.type === 'entry');
+                
+                // 构建项目-条目关系
+                const projectMap = {};
+                projects.forEach(project => {
+                    projectMap[project.id] = {
+                        ...project,
+                        children: entries.filter(entry => entry.parent_id === project.id)
+                    };
+                });
+                
+                // 渲染列表
+                let html = '';
+                
+                // 渲染项目
+                Object.values(projectMap).forEach(project => {
+                    html += `
+                        <div class="project-item" data-id="${project.id}" data-type="project">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <button class="btn btn-sm btn-link p-0 me-2 expand-btn" data-id="${project.id}">
+                                        <span class="expand-icon">▼</span>
+                                    </button>
+                                    <div class="project-name font-weight-bold">${project.name}</div>
+                                </div>
+                                <!-- 更多选项按钮 -->
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton${project.id}" onclick="UI.toggleDropdown(this)">
+                                        <span class="more-icon">...</span>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end" id="dropdown${project.id}" style="display: none;">
+                                        <li><a class="dropdown-item download-option" href="#" onclick="App.downloadProjectDoc('${project.id}', '${project.name}')">下载文档</a></li>
+                                        <li><a class="dropdown-item delete-option" href="#" onclick="App.deleteItem(null, 'project', '${project.id}')">删除</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- 项目子条目 -->
+                            <div class="project-children" id="children-${project.id}" style="display: block; margin-left: 20px;">
+                    `;
+                    
+                    // 渲染项目的子条目
+                    if (project.children.length > 0) {
+                        project.children.forEach((entry, index) => {
+                            const entryIndex = entriesData.findIndex(item => item.id === entry.id);
+                            html += `
+                                <div class="entry-item" data-index="${entryIndex}" data-id="${entry.id}" data-type="entry">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <div>
+                                            <div class="nickname">${index + 1}. ${entry.nickname || '未填写'}</div>
+                                            <div class="meta">ID: ${entry.kid || '未填写'}</div>
+                                        </div>
+                                        <!-- 更多选项按钮 -->
+                                        <div class="dropdown">
+                                            <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton${entry.id}" onclick="UI.toggleDropdown(this)">
+                                                <span class="more-icon">...</span>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-end" id="dropdown${entry.id}" style="display: none;">
+                                                <li><a class="dropdown-item delete-option" href="#" onclick="App.deleteItem(${entryIndex}, 'entry', '${entry.id}')">删除</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                        });
+                    } else {
+                        html += `<div class="text-muted text-sm py-2"></div>`;
+                    }
+                    
+                    html += `
+                                </div>
+                            </div>
+                        `;
+                });
+                
+                // 渲染没有父项目的条目
+                const orphanEntries = entries.filter(entry => !entry.parent_id);
+                if (orphanEntries.length > 0) {
+                    orphanEntries.forEach((entry, index) => {
+                        const entryIndex = entriesData.findIndex(item => item.id === entry.id);
+                        html += `
+                            <div class="entry-item" data-index="${entryIndex}" data-id="${entry.id}" data-type="entry">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <div class="nickname">${index + 1}. ${entry.nickname || '未填写'}</div>
+                                        <div class="meta">ID: ${entry.kid || '未填写'}</div>
+                                    </div>
+                                    <!-- 更多选项按钮 -->
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton${entry.id}" onclick="UI.toggleDropdown(this)">
+                                            <span class="more-icon">...</span>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-end" id="dropdown${entry.id}" style="display: none;">
+                                            <li><a class="dropdown-item delete-option" href="#" onclick="App.deleteItem(${entryIndex}, 'entry', '${entry.id}')">删除</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    });
+                }
+                
+                entryList.innerHTML = html;
+                
+                // 添加事件监听器
+                UI.bindEntryListEvents();
+            },
+            
+            // 绑定条目列表事件
+            bindEntryListEvents: function() {
+                // 添加项目点击事件（折叠/展开）
+                document.querySelectorAll('.expand-btn').forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation(); // 阻止事件冒泡到项目项
+                        const projectId = this.getAttribute('data-id');
+                        const childrenContainer = document.getElementById(`children-${projectId}`);
+                        const expandIcon = this.querySelector('.expand-icon');
+                        
+                        if (childrenContainer.style.display === 'block') {
+                            childrenContainer.style.display = 'none';
+                            expandIcon.textContent = '▶';
+                            
+                            // 隐藏右侧详情区域
+                            UI.hideEntryDetail();
+                            App.selectedEntry = null;
+                            
+                            // 移除所有条目的激活状态
+                            document.querySelectorAll('.entry-item').forEach(item => {
+                                item.classList.remove('active');
+                            });
+                        } else {
+                            childrenContainer.style.display = 'block';
+                            expandIcon.textContent = '▼';
+                        }
+                    });
+                });
+                
+                // 添加项目点击事件（高亮选中）
+                document.querySelectorAll('.project-item').forEach(item => {
+                    item.addEventListener('click', function(e) {
+                        // 防止点击更多选项按钮时触发项目选择
+                        if (!e.target.closest('.dropdown')) {
+                            const projectId = this.getAttribute('data-id');
+                            
+                            // 移除其他项目的选中状态
+                            document.querySelectorAll('.project-item').forEach(p => {
+                                p.classList.remove('active');
+                            });
+                            
+                            // 添加当前项目的选中状态
+                            this.classList.add('active');
+                            
+                            // 保存当前选中的项目ID
+                            App.selectedProjectId = projectId;
+                        }
+                    });
+                });
+                
+                // 添加条目点击事件
+                document.querySelectorAll('.entry-item').forEach(item => {
+                    item.addEventListener('click', function(e) {
+                        // 防止点击更多选项按钮时触发条目选择
+                        if (!e.target.closest('.dropdown')) {
+                            const index = this.getAttribute('data-index');
+                            const isActive = this.classList.contains('active');
+                            
+                            // 如果已经激活，则隐藏详情
+                            if (isActive) {
+                                this.classList.remove('active');
+                                UI.hideEntryDetail();
+                                App.selectedEntry = null;
+                            } else {
+                                App.selectEntry(index);
+                            }
+                        }
+                    });
+                });
+            },
+            
+            // 切换下拉菜单
+            toggleDropdown: function(button) {
+                const dropdownId = button.id.replace('dropdownMenuButton', 'dropdown');
+                const dropdownMenu = document.getElementById(dropdownId);
+                
+                // 关闭其他所有下拉菜单
+                document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                    if (menu.id !== dropdownId) {
+                        menu.style.display = 'none';
+                    }
+                });
+                
+                // 切换当前下拉菜单
+                dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+            },
+            
+            // 显示条目详情
+            showEntryDetail: function(entry, index) {
+                const detailContainer = document.getElementById('selectedEntryDetail');
+                
+                let content = `
+                    <div class="entry-detail">
+                        <h5 class="mb-4">条目详情</h5>
+                        
+                        <div class="detail-section">
+                            <span class="detail-label">昵称:</span>
+                            <span class="detail-value">${entry.nickname || '未填写'}</span>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <span class="detail-label">QQ号:</span>
+                            <span class="detail-value">${entry.qq || '未填写'}</span>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <span class="detail-label">科雷ID:</span>
+                            <span class="detail-value">${entry.kid || '未填写'}</span>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <span class="detail-label">视频链接:</span>
+                            <span class="detail-value">${entry.video ? `<a href="${entry.video}" target="_blank" class="text-primary" rel="noopener noreferrer">${entry.video}</a>` : '未填写'}</span>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <span class="detail-label">参赛图片:</span>
+                            <div class="detail-value mt-2">
+                                ${entry.image ? `<img src="${entry.image}" class="img-fluid rounded" style="max-width: 100%; max-height: 300px;" alt="参赛图片" aria-label="参赛图片">` : '未上传'}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                detailContainer.innerHTML = content;
+                detailContainer.style.display = 'block';
+            },
+            
+            // 隐藏条目详情
+            hideEntryDetail: function() {
+                const detailContainer = document.getElementById('selectedEntryDetail');
+                detailContainer.style.display = 'none';
+            },
+            
+            // 显示加载状态
+            showLoading: function(element) {
+                element.classList.add('loading');
+            },
+            
+            // 隐藏加载状态
+            hideLoading: function(element) {
+                element.classList.remove('loading');
+            },
+            
+            // 显示表单错误
+            showFormError: function(fieldId, message) {
+                const field = document.getElementById(fieldId);
+                const errorElement = document.getElementById(`${fieldId}-error`);
+                
+                if (field && errorElement) {
+                    field.classList.add('is-invalid');
+                    errorElement.textContent = message;
+                    errorElement.style.display = 'block';
+                }
+            },
+            
+            // 隐藏表单错误
+            hideFormError: function(fieldId) {
+                const field = document.getElementById(fieldId);
+                const errorElement = document.getElementById(`${fieldId}-error`);
+                
+                if (field && errorElement) {
+                    field.classList.remove('is-invalid');
+                    errorElement.textContent = '';
+                    errorElement.style.display = 'none';
+                }
+            },
+            
+            // 清除所有表单错误
+            clearFormErrors: function() {
+                document.querySelectorAll('.form-control').forEach(field => {
+                    field.classList.remove('is-invalid');
+                });
+                document.querySelectorAll('.invalid-feedback').forEach(error => {
+                    error.textContent = '';
+                    error.style.display = 'none';
+                });
+            }
+        };
+        
+        // --------------------------
+        // 表单处理模块
+        // --------------------------
+        const FormHandler = {
+            // 验证表单
+            validateForm: function(formData) {
+                let isValid = true;
+                UI.clearFormErrors();
+                
+                // 必填项验证
+                if (!formData.nickname || formData.nickname.trim() === '') {
+                    UI.showFormError('nickname', '昵称是必填项');
+                    isValid = false;
+                }
+                
+                // QQ号验证
+                if (!Utils.validateQQ(formData.qq)) {
+                    UI.showFormError('qq', 'QQ号应为5-11位数字');
+                    isValid = false;
+                }
+                
+                // URL验证
+                if (!Utils.validateUrl(formData.video)) {
+                    UI.showFormError('video', '请输入有效的URL地址');
+                    isValid = false;
+                }
+                
+                return isValid;
+            },
+            
+            // 处理表单提交
+            handleFormSubmit: function(e) {
+                e.preventDefault();
+                
+                const form = e.target;
+                const formData = new FormData(form);
+                
+                // 获取表单数据
+                const nickname = formData.get('nickname')?.trim() || '';
+                const qq = formData.get('qq')?.trim() || '';
+                const kid = formData.get('kid')?.trim() || '';
+                const video = formData.get('video')?.trim() || '';
+                const imageFile = formData.get('image');
+                
+                // 验证图片大小
+                if (imageFile && imageFile.size > 0) {
+                    if (!Utils.validateImageSize(imageFile)) {
+                        UI.showFormError('image', '图片大小不能超过5MB');
+                        return;
+                    }
+                    
+                    if (!Utils.validateImageType(imageFile)) {
+                        UI.showFormError('image', '请上传JPEG、PNG、GIF或WebP格式的图片');
+                        return;
+                    }
+                }
+                
+                // 验证表单数据
+                const validationData = {
+                    nickname,
+                    qq,
+                    video
+                };
+                
+                if (!FormHandler.validateForm(validationData)) {
+                    return;
+                }
+                
+                // 处理图片
+                let imageData = null;
+                if (imageFile && imageFile.size > 0) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        imageData = e.target.result;
+                        FormHandler.submitEntry(nickname, qq, kid, video, imageData);
+                    };
+                    reader.onerror = function() {
+                        Utils.showToast('图片处理失败', 'error');
+                    };
+                    reader.readAsDataURL(imageFile);
+                } else {
+                    FormHandler.submitEntry(nickname, qq, kid, video, null);
+                }
+            },
+            
+            // 提交条目
+            submitEntry: function(nickname, qq, kid, video, imageData) {
+                const entry = {
+                    nickname,
+                    qq,
+                    kid,
+                    video,
+                    image: imageData,
+                    parent_id: App.selectedProjectId || null
+                };
+                
+                const result = App.dataStore.addEntry(entry);
+                if (result) {
+                    Utils.showToast('条目添加成功');
+                    
+                    // 重置表单
+                    document.getElementById('entryForm').reset();
+                    FormHandler.clearPreview();
+                    App.loadEntries();
+                } else {
+                    Utils.showToast('条目添加失败，请重试', 'error');
+                }
+            },
+            
+            // 初始化文件上传
+            initFileUpload: function() {
+                const fileInput = document.getElementById('image');
+                const fileUploadText = document.getElementById('fileUploadText');
+                const customUploadControl = document.querySelector('.custom-file-upload-control');
+                
+                if (!fileInput || !fileUploadText || !customUploadControl) return;
+                
+                // 点击自定义控件时触发文件选择
+                customUploadControl.addEventListener('click', function() {
+                    fileInput.click();
+                });
+                
+                // 文件选择后更新显示文本
+                fileInput.addEventListener('change', function(e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        fileUploadText.textContent = file.name;
+                        // 显示图片预览
+                        FormHandler.showImagePreview(file);
+                    } else {
+                        fileUploadText.textContent = '未选择';
+                        // 清除预览
+                        FormHandler.clearPreview();
+                    }
+                });
+            },
+            
+            // 显示图片预览
+            showImagePreview: function(file) {
+                const reader = new FileReader();
+                const previewImage = document.getElementById('previewImage');
+                const previewContainer = document.getElementById('previewContainer');
+                
+                if (!previewImage || !previewContainer) return;
+                
+                reader.onload = function(e) {
+                    previewImage.src = e.target.result;
+                    previewContainer.style.display = 'block';
+                };
+                reader.onerror = function() {
+                    Utils.showToast('图片预览失败', 'warning');
+                };
+                reader.readAsDataURL(file);
+            },
+            
+            // 清除图片预览
+            clearPreview: function() {
+                const fileInput = document.getElementById('image');
+                const fileUploadText = document.getElementById('fileUploadText');
+                const previewImage = document.getElementById('previewImage');
+                const previewContainer = document.getElementById('previewContainer');
+                
+                if (fileInput) fileInput.value = '';
+                if (fileUploadText) fileUploadText.textContent = '未选择';
+                if (previewImage) previewImage.src = '';
+                if (previewContainer) previewContainer.style.display = 'none';
+            }
+        };
+        
+        // --------------------------
+        // 事件处理模块
+        // --------------------------
+        const EventHandler = {
+            // 设置事件监听器
+            setupEventListeners: function() {
+                // 刷新按钮
+                const refreshBtn = document.getElementById('refreshBtn');
+                if (refreshBtn) {
+                    refreshBtn.addEventListener('click', function() {
+                        App.loadEntries();
+                    });
+                }
+                
+                // 添加项目按钮
+                const addProjectBtn = document.getElementById('addProjectBtn');
+                if (addProjectBtn) {
+                    addProjectBtn.addEventListener('click', function() {
+                        const addProjectForm = document.getElementById('addProjectForm');
+                        if (addProjectForm) {
+                            addProjectForm.style.display = 'block';
+                            const projectNameInput = document.getElementById('projectNameInput');
+                            if (projectNameInput) {
+                                projectNameInput.focus();
+                            }
+                        }
+                    });
+                }
+                
+                // 保存项目按钮
+                const saveProjectBtn = document.getElementById('saveProjectBtn');
+                if (saveProjectBtn) {
+                    saveProjectBtn.addEventListener('click', App.saveProject);
+                }
+                
+                // 取消添加项目
+                const cancelProjectBtn = document.getElementById('cancelProjectBtn');
+                if (cancelProjectBtn) {
+                    cancelProjectBtn.addEventListener('click', function() {
+                        const addProjectForm = document.getElementById('addProjectForm');
+                        if (addProjectForm) {
+                            addProjectForm.style.display = 'none';
+                            const projectNameInput = document.getElementById('projectNameInput');
+                            if (projectNameInput) {
+                                projectNameInput.value = '';
+                            }
+                        }
+                    });
+                }
+                
+                // 项目名称输入框回车保存
+                const projectNameInput = document.getElementById('projectNameInput');
+                if (projectNameInput) {
+                    projectNameInput.addEventListener('keypress', function(e) {
+                        if (e.key === 'Enter') {
+                            App.saveProject();
+                        }
+                    });
+                }
+                
+                // 表单提交
+                const entryForm = document.getElementById('entryForm');
+                if (entryForm) {
+                    entryForm.addEventListener('submit', FormHandler.handleFormSubmit);
+                }
+                
+                // 点击外部关闭下拉菜单
+                document.addEventListener('click', function(e) {
+                    if (!e.target.closest('.dropdown')) {
+                        document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                            menu.style.display = 'none';
+                        });
+                    }
+                });
+            }
+        };
+        
+        // --------------------------
+        // 主应用模块
+        // --------------------------
+        const App = {
+            // 初始化应用
+            init: function() {
+                this.dataStore = new DataStore();
+                this.entriesData = [];
+                this.selectedEntry = null;
+                this.selectedProjectId = null;
+                
+                // 初始化事件监听器
+                EventHandler.setupEventListeners();
+                
+                // 初始化文件上传
+                FormHandler.initFileUpload();
+                
+                // 加载条目
+                this.loadEntries();
+            },
+            
+            // 加载条目数据
+            loadEntries: function() {
+                try {
+                    this.entriesData = this.dataStore.getAll();
+                    UI.renderEntryList(this.entriesData);
+                    
+                    // 重置选中状态和隐藏条目详情
+                    UI.hideEntryDetail();
+                    this.selectedEntry = null;
+                    this.selectedProjectId = null;
+                    
+                    // 移除所有项目和条目的选中状态
+                    document.querySelectorAll('.project-item, .entry-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                } catch (error) {
+                    console.error('加载条目失败:', error);
+                    Utils.showToast('加载数据失败', 'error');
+                }
+            },
+            
+            // 保存项目
+            saveProject: function() {
+                const projectNameInput = document.getElementById('projectNameInput');
+                if (!projectNameInput) return;
+                
+                const projectName = projectNameInput.value.trim();
+                if (!projectName) {
+                    Utils.showToast('请输入项目名称', 'warning');
+                    return;
+                }
+                
+                const result = App.dataStore.addProject(projectName);
+                if (result) {
+                    Utils.showToast('项目添加成功');
+                    
+                    // 隐藏添加项目表单
+                    const addProjectForm = document.getElementById('addProjectForm');
+                    if (addProjectForm) {
+                        addProjectForm.style.display = 'none';
+                        projectNameInput.value = '';
+                    }
+                    
+                    // 重新加载条目
+                    App.loadEntries();
+                } else {
+                    Utils.showToast('项目添加失败', 'error');
+                }
+            },
+            
+            // 选择条目
+            selectEntry: function(index) {
+                try {
+                    // 移除其他条目的激活状态
+                    document.querySelectorAll('.entry-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    // 添加当前条目的激活状态
+                    const selectedItem = document.querySelector(`[data-index="${index}"]`);
+                    if (!selectedItem) return;
+                    
+                    selectedItem.classList.add('active');
+                    
+                    // 显示详细信息
+                    const entry = this.entriesData[index];
+                    this.selectedEntry = entry;
+                    UI.showEntryDetail(entry, index + 1);
+                } catch (error) {
+                    console.error('选择条目失败:', error);
+                    Utils.showToast('查看条目失败', 'error');
+                }
+            },
+            
+            // 删除项目或条目
+            deleteItem: function(index, type, id) {
+                let confirmMsg = '确定要删除吗？';
+                if (type === 'project') {
+                    confirmMsg = '确定要删除这个项目及其所有子项目吗？';
+                } else {
+                    confirmMsg = '确定要删除这个条目吗？';
+                }
+                
+                if (confirm(confirmMsg)) {
+                    const result = this.dataStore.deleteItem(id, type);
+                    if (result) {
+                        Utils.showToast('删除成功');
+                        this.loadEntries();
+                    } else {
+                        Utils.showToast('删除失败', 'error');
+                    }
+                }
+            },
+            
+            // 下载项目文档
+            downloadProjectDoc: function(projectId, projectName) {
+                Utils.showToast('文档生成功能正在开发中', 'warning');
+            }
+        };
+        
+        // --------------------------
+        // 初始化应用
+        // --------------------------
+        document.addEventListener('DOMContentLoaded', function() {
+            App.init();
+        });
+        
+        // 键盘快捷键支持
+        document.addEventListener('keydown', function(e) {
+            // Ctrl + R 刷新数据
+            if (e.ctrlKey && e.key === 'r') {
+                e.preventDefault();
+                App.loadEntries();
+            }
+            // Ctrl + N 新条目
+            if (e.ctrlKey && e.key === 'n') {
+                e.preventDefault();
+                document.getElementById('nickname')?.focus();
+            }
+        });
+        
+        // 页面卸载前清理资源
+        window.addEventListener('beforeunload', function() {
+            // 清理可能的资源，防止内存泄漏
+            App.selectedEntry = null;
+            App.entriesData = [];
+        });
+    </script>
+</body>
+</html>
